@@ -21,6 +21,7 @@ namespace SixteenClothing.Areas.Admin.Controllers
             _folderPath = Path.Combine(_environment.WebRootPath, "assets", "images");
         }
 
+
         public async Task<IActionResult> Index()
         {
             var products = await _context.Products.Select(x => new ProductGetVM
