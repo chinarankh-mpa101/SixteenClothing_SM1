@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SixteenClothing.Contexts;
+using SixteenClothing.Models;
 
 namespace SixteenClothing
 {
@@ -15,7 +17,10 @@ namespace SixteenClothing
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
             });
+            builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
+            {
 
+            }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
             var app = builder.Build();
 
@@ -32,6 +37,7 @@ namespace SixteenClothing
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

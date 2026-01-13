@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SixteenClothing.Contexts;
@@ -24,6 +25,12 @@ namespace SixteenClothing.Controllers
             return View(products);
         }
 
-  
+
+
+        [Authorize(Roles ="Member")]
+        public IActionResult Test()
+        {
+            return Ok("Salam");
+        }
     }
 }
